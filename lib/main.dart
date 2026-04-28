@@ -12,6 +12,7 @@ class ScaleTransitionExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorSchemeSeed: Colors.indigo,
           useMaterial3: true,
@@ -75,7 +76,7 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
 
   double sliderValue = 3; // for spicy
 
-  bool isON = true; // eating or take away
+  bool isTakeAway = true; // eating or take away
 
   String status = "";
   String buzzer = "";
@@ -86,6 +87,17 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("MY KABAB"), //===THIS IS YOUR TITLE
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.info_outline_rounded),
+            onPressed: () {
+              showCredits();
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           children: [
@@ -96,7 +108,16 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
                   height: 80.0,
                   child: Image.asset("assets/logo.jpg")),
             ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
+            ),
             //===============================
+            //
+            //
+            //
 
             Container(
               padding: EdgeInsets.all(4),
@@ -117,128 +138,159 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
                   setState(() {
                     if (newValue != "Select Kababas") {
                       dropdownValue = newValue!;
-                      print("You have selected $dropdownValue");
+                      print("You have selected ");
                     }
                   });
                 },
               ),
             ),
             //=============================
-
-            SizedBox(
-              height: 20,
+            //
+            //
+            //
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
             ),
+            //
+            //
+            //
+
             Text("Meat"),
-            Row(children: [
-              Expanded(
-                child: ListTile(
-                  title: Text("Chicken"),
-                  leading: Radio(
-                    value: 1,
-                    groupValue: selectedRadio,
-                    activeColor: Colors.green,
-                    onChanged: (val) {
-                      print("RadioButton $val selected");
-                      selectedRadio = val!;
-                      setState(() {});
-                    },
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ListTile(
-                  title: Text("Pork"),
-                  leading: Radio(
-                      value: 2,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.green,
-                      onChanged: (val) {
-                        print("RadioButton $val selected");
-                        selectedRadio = val!;
-                        setState(() {});
-                      }),
-                ),
-              ),
-              Expanded(
-                child: ListTile(
-                  title: Text("Beef"),
-                  leading: Radio(
-                    value: 3,
-                    groupValue: selectedRadio,
-                    activeColor: Colors.green,
-                    onChanged: (val) {
-                      print("RadioButton $val selected");
-                      selectedRadio = val!;
-                      setState(() {});
-                    },
-                  ),
-                ),
-              ),
-            ]),
-//==============================
-
             SizedBox(
-              height: 20,
+              width: 150,
+              child: ListTile(
+                title: Text("Chicken"),
+                leading: Radio(
+                  value: 1,
+                  groupValue: selectedRadio,
+                  activeColor: Colors.green,
+                  onChanged: (val) {
+                    print("RadioButton  selected");
+                    selectedRadio = val!;
+                    setState(() {});
+                  },
+                ),
+              ),
             ),
+            SizedBox(
+              width: 150,
+              child: ListTile(
+                title: Text("Pork"),
+                leading: Radio(
+                    value: 2,
+                    groupValue: selectedRadio,
+                    activeColor: Colors.green,
+                    onChanged: (val) {
+                      print("RadioButton  selected");
+                      selectedRadio = val!;
+                      setState(() {});
+                    }),
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: ListTile(
+                title: Text("Beef"),
+                leading: Radio(
+                  value: 3,
+                  groupValue: selectedRadio,
+                  activeColor: Colors.green,
+                  onChanged: (val) {
+                    print("RadioButton  selected");
+                    selectedRadio = val!;
+                    setState(() {});
+                  },
+                ),
+              ),
+            ),
+            //==============================
+            //
+            //
+            //
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
+            ),
+            //
+            //
+            //
+
             Text("Extras"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  child: CheckboxListTile(
-                    value: checked[0],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checked[0] = value!;
-                      });
-                    },
-                    title: const Text('Fries'),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                ),
-                Expanded(
-                  child: CheckboxListTile(
-                    value: checked[1],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checked[1] = value!;
-                      });
-                    },
-                    title: const Text('Drink'),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                ),
-                Expanded(
-                  child: CheckboxListTile(
-                    value: checked[2],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checked[2] = value!;
-                      });
-                    },
-                    title: const Text('Cookie'),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                ),
-                Expanded(
-                  child: CheckboxListTile(
-                    value: checked[3],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checked[3] = value!;
-                      });
-                    },
-                    title: const Text('KetchUp'),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                ),
-              ],
+            SizedBox(
+              width: 150,
+              child: CheckboxListTile(
+                value: checked[0],
+                onChanged: (bool? value) {
+                  setState(() {
+                    checked[0] = value!;
+                  });
+                },
+                title: const Text('Fries'),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: CheckboxListTile(
+                value: checked[1],
+                onChanged: (bool? value) {
+                  setState(() {
+                    checked[1] = value!;
+                  });
+                },
+                title: const Text('Drink'),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: CheckboxListTile(
+                value: checked[2],
+                onChanged: (bool? value) {
+                  setState(() {
+                    checked[2] = value!;
+                  });
+                },
+                title: const Text('Cookie'),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: CheckboxListTile(
+                value: checked[3],
+                onChanged: (bool? value) {
+                  setState(() {
+                    checked[3] = value!;
+                  });
+                },
+                title: const Text('KetchUp'),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
             ),
             //=============================
-
-            SizedBox(
-              height: 20,
+            //
+            //
+            //
+            //
+            //
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
             ),
+            //
+            //
+            //
+            //
+            //
+
             Text("Padazai"),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -281,11 +333,23 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
                 ),
               ],
             ),
-//==================================
-
-            SizedBox(
-              height: 20,
+            //==================================
+            //
+            //
+            ////
+            //
+            //
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
             ),
+            //
+            //
+            //
+            //
+
             Text("Spice"),
             Slider(
               value: sliderValue,
@@ -299,7 +363,21 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
                 });
               },
             ),
-//====================================
+            //====================================
+            //
+            //
+            ////
+            //
+            //
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
+            ),
+            //
+            //
+            //
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -307,13 +385,13 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
                 Text('Eat In'),
 
                 Switch(
-                  value: isON,
+                  value: isTakeAway,
                   activeColor: Colors.red,
                   inactiveThumbColor: Colors.green,
                   onChanged: (bool value) {
                     setState(() {
-                      isON = value;
-                      print(isON);
+                      isTakeAway = value;
+                      print(isTakeAway);
                     });
                   },
                 ),
@@ -322,14 +400,31 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
               ],
             ),
             //=================================
+            //
+            //
+            //
+            //
 
-            SizedBox(
-              height: 20,
+            //
+            //
+            //
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Divider(
+                color: Colors.amber,
+              ),
             ),
+            //
+            //
+            //
             Text(
-              "$status $buzzer $waitingTime",
+              "  ",
               style: TextStyle(fontSize: 18),
             ),
+
+            const SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),
@@ -341,8 +436,14 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
     );
   }
 
+  //
+  //
+  //
+  //
+  //PLACE ORDER=====================
+
   void placeMyOrder() {
-    String fullOrder = "You have selected $dropdownValue";
+    String fullOrder = "You have selected ";
 
     String addMeat = "";
     if (selectedRadio == 1) {
@@ -353,7 +454,7 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
       addMeat = "Pork";
     }
 
-    fullOrder = fullOrder + " with $addMeat.";
+    fullOrder = fullOrder + " with .";
 
     String addExtras = "";
     //if(checked[0]==true){addExtras=" ";}
@@ -361,7 +462,7 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
     //if(checked[2]==true){addExtras = addExtras + " ";}
     //if(checked[3]==true){addExtras = addExtras + " ";}
 
-    fullOrder = fullOrder + "\nExtras Selected: $addExtras";
+    fullOrder = fullOrder + "\nExtras Selected: ";
 
     String addPadazas = "";
     //if(){addPadazas = " Garlic";}
@@ -369,7 +470,7 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
     //if(){addPadazas = addPadazas + " Krienai";}
     //if(){addPadazas = addPadazas + " CheeseMayo";}
 
-    fullOrder = fullOrder + "\nSauce Selected: $addPadazas";
+    fullOrder = fullOrder + "\nSauce Selected: ";
 
     fullOrder = fullOrder + "\nSpice Level: ";
 
@@ -377,7 +478,7 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
     //if(){ eating = "Eating Inside";}
     //else{eating="Take Away";}
 
-    fullOrder = fullOrder + "\n$eating";
+    fullOrder = fullOrder + "\n";
 
     //====================
     showDialog<String>(
@@ -414,5 +515,28 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
                 ),
               ],
             ));
+  }
+
+//popup dialog for your credits
+  void showCredits() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('KMM Coding Club'),
+        content: const Text(
+          '''Order GUI v1.0
+
+This project was designed & coded by the Junior IT class.
+CREDITS: 
+Jonas Medelis(5th Grade) and Vilius(7th Grade)''',
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context), // Just close the dialog
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }
